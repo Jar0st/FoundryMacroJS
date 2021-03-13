@@ -1,8 +1,10 @@
-const imgArray = ["Doppio.png","Kobold.png"]; // Pfad im DoppioPics Ordner
-const imgNames = ["OG Doppio", "Skip"]; // Anzeigename
+// For Changelings and Disguise Self Addicts
+const folder = "DoppioPics"; // Folder Name in Userdirectory/
+const imgArray = ["Doppio.png","Kobold.png","QuddosNecro.png"]; // Img name in folder
+const imgNames = ["OG Doppio", "Skip", "Doppiomancer"]; // name in Dropdown menu (equal to index in imgArray)
 
 if (canvas.tokens.controlled.length != 1)
-  return ui.notifications.error("Wähle EINEN Token");
+  return ui.notifications.error("Chose ONE Token");
 
 let imgHtml = `<form>
 <div class="form-group">
@@ -28,7 +30,7 @@ new Dialog({
     close: _html => {
         if (applyImage) {
            let imgChoice = _html.find('[name="img-chosen"]')[0].value;
-           token.update({img : "DoppioPics/" + imgChoice}); 
+           token.update({img : folder + "/" + imgChoice}); 
         }
     }
 }).render(true);

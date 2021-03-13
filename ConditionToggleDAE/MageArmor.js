@@ -1,5 +1,6 @@
-let effectName = "Mage Armor"; // Effect Name im Effects Tab
-let img = "systems/dnd5e/icons/skills/blue_18.jpg"; // Pfad zu Condition Pic
+// requires "Mage Armor" Active Effect setup in effects tab 
+let effectName = "Mage Armor"; // effect name in effects tab
+let img = "systems/dnd5e/icons/skills/blue_18.jpg"; // path to condition img
 if (canvas.tokens.controlled.length === 0)
   return ui.notifications.error("Please select a token!");
 let effect = token.actor.data.effects.find(i => i.label === effectName);

@@ -1,4 +1,5 @@
 // requires "Conditions for 5e" module
+// applies or removes Conditions on multiple Tokens at once
 const tokCon = canvas.tokens.controlled;
 
 function applyCon(condition){

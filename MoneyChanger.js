@@ -1,4 +1,4 @@
-//Money Give/Remover
+//Money Give/Remover made by Kekilla
 
 (()=>{
 	let targets = [game.user.character]; //game.user.targets;

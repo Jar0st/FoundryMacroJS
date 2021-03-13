@@ -1,4 +1,5 @@
-let sneakattack = "4d6";
+// made for Warlock(Genie)/Rogue(Arcane Trickster) D&D 5e 
+let sneakattack = "4d6"; // hardcoded for now
 let hex = "1d6";
 let bb = "1"
 let profbonus = game.user.character.data.data.attributes.prof;
