@@ -1,7 +1,7 @@
-// made for Warlock(Genie)/Rogue(Arcane Trickster) D&D 5e 
-const sneakDice = Math.ceil(game.users.current.character.data.items.find(i=> i.name===`Rogue`).data.levels/2);
+// made for Sorcerer/Rogue D&D 5e 
+// const sneakDice = Math.ceil(game.users.current.character.data.items.find(i=> i.name===`Rogue`).data.levels/2);
+const sneakDice = 3;
 let sneakattack = sneakDice + "d6";
-let hex = "1d6";
 let bb = "1"; // bb modifier
 const profbonus = game.user.character.data.data.attributes.prof;
 const level = game.user.character.data.data.details.level;
@@ -50,22 +50,15 @@ content: html,
         if (attack) {
             if (document.getElementById("crit").checked){
                 sneakattack = sneakDice * 2 + "d6";
-                hex = "2d6";
                 bb = "2";
             }
             if (document.getElementById("sneak").checked){
                 let damageType = document.getElementById("dmg").value;
                 new Roll(sneakattack).toMessage({flavor: `Sneak Attack ${damageType} Damage`});                
             }
-            if (document.getElementById("genie").checked){
-                new Roll(`${profbonus}`).toMessage({flavor: `Genies Wrath Cold Damage`});;
-            }
-            if (document.getElementById("hex").checked){
-                new Roll(hex).toMessage({flavor: `Hex Necrotic Damage`});;
-            }
             if (document.getElementById("boom").checked){
                 // if (level < 5) => (0 || 0) && (1 || 2)
-                if (5 > level < 11){
+                if (4 > level < 11){
                     new Roll(`${bb}d8`).toMessage({flavor: `Booming Blade Thunder Damage`}); // (1 || 2) && (2 || 4)
                     bb*= 2;
                 }
@@ -74,32 +67,12 @@ content: html,
                     new Roll(`${bb2}d8`).toMessage({flavor: `Booming Blade Thunder Damage`}); // (2 || 4) && (3 || 6)
                     bb*= 3;
                 }
-                else {
+                else if (level >= 17){
                     let bb2 = bb * 3;
                     new Roll(`${bb2}d8`).toMessage({flavor: `Booming Blade Thunder Damage`}) // (3 || 6) && (4 || 8)
                     bb*= 4;
                 }
                 new Roll(`${bb}d8`).toMessage({flavor: `Wenn Target sich bewegt Thunder Damage`});
-            }
-            if (document.getElementById("gfb").checked){
-                // if (level < 5) => (0 || 0) && CHA
-                if (level < 5){
-                    bb = 0;
-                }
-                else if (level < 11){
-                    new Roll(`${bb}d8`).toMessage({flavor: `GFB HIT Fire Damage`}); // (1 || 2) && CHA
-                }
-                else if (level < 17){
-                    bb *= 2;
-                    new Roll(`${bb}d8`).toMessage({flavor: `GFB HIT Fire Damage`}); // (2 || 4) && CHA
-                }
-                else {
-                    bb *= 3;
-                    new Roll(`${bb}d8`).toMessage({flavor: `GFB HIT Fire Damage`}) // (3 || 6) && CHA
-                }
-                let cha = game.user.character.data.data.abilities.cha.mod;
-                if (bb == 0) new Roll(`${cha}`).toMessage({flavor: `GFB CHA Fire Damage`});
-                else new Roll(`${bb}d8+${cha}`).toMessage({flavor: `GFB CHA Fire Damage`});
             }
         }
     }
